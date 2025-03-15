@@ -11,7 +11,6 @@ for i in range(1, 7):
     plt.imshow(labeled)
     plt.show()
 
-    count_ = 0
     for j in range(1, np.max(labeled) + 1):
         result = label(binary_erosion(labeled==j, np.ones(3).reshape(3, 1)))
         c = np.max(result)
@@ -19,3 +18,4 @@ for i in range(1, 7):
             case 0: print(f'{j} провод уничтожен')
             case 1: print(f'{j} провод цел')
             case _: print(f'{j} провод разрезан на {c} частей')
+    print('')
