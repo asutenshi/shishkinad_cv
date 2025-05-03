@@ -85,7 +85,10 @@ while capture.isOpened():
                 c2 += 1
                 balls_coords[key] = (x, y)
         # result = sorted(list(balls_coords), key=lambda x: balls_coords[x])
-        result = sorted(list(balls_coords), key=lambda k: (balls_coords[k][1], -balls_coords[k][0]))
+        balls_by_y = sorted(list(balls_coords), key=lambda key: balls_coords[key][1])
+        top_balls = sorted(balls_by_y[0:-2], key=lambda key: balls_coords[key][0])
+        bottom_balls = sorted(balls_by_y[-2:], key=lambda key: balls_coords[key][0])
+        result = top_balls + bottom_balls
         print(f'{result=}')
         cv2.putText(frame, f'Result = {result == guess_colors}', (10, 50),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255))
